@@ -1,0 +1,55 @@
+<section id="signup" class="signup">
+  <div class="container">
+    <form [formGroup]="signupForm" (ngSubmit)="submitSignupForm(signupForm)" class="form w-50 m-auto">
+      <div *ngIf="error.length > 0" class="alert alert-danger">
+        <p>{{ error }}</p>
+      </div>
+      <div class="row g-3">
+        <div class="col-md-6">
+          <input formControlName="firstName" type="text" class="form-control firstName" id="firstName" placeholder="Enter First Name" />
+          <div *ngIf="signupForm.get('firstName')?.errors != null && signupForm.get('firstName')?.touched" class="alert alert-danger my-2">
+            <p *ngIf="signupForm.get('firstName')?.errors?.required">First name is required</p>
+            <p *ngIf="signupForm.get('firstName')?.errors?.minlength">First name min length is 3</p>
+            <p *ngIf="signupForm.get('firstName')?.errors?.maxlength">First name max length 10</p>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <input formControlName="lastName" type="text" class="form-control lastName" id="lastName" placeholder="Enter Last Name" />
+          <div *ngIf="signupForm.get('lastName')?.errors != null && signupForm.get('lastName')?.touched" class="alert alert-danger my-2">
+            <p *ngIf="signupForm.get('lastName')?.errors?.required">Last name is required</p>
+            <p *ngIf="signupForm.get('lastName')?.errors?.minlength">Last name min length is 3</p>
+            <p *ngIf="signupForm.get('lastName')?.errors?.maxlength">Last name max length 10</p>
+          </div>
+        </div>
+        <div class="col-12">
+          <input formControlName="email" type="email" class="form-control email" id="email" placeholder="Enter Your Email" />
+          <div *ngIf="signupForm.get('email')?.errors != null && signupForm.get('email')?.touched" class="alert alert-danger my-2">
+            <p *ngIf="signupForm.get('email')?.errors?.required">Email is required</p>
+            <p *ngIf="signupForm.get('email')?.errors?.email">Email is invalid</p>
+          </div>
+        </div>
+        <div class="col-12">
+          <input formControlName="age" type="number" class="form-control age" id="age" placeholder="Enter Your Age" />
+          <div *ngIf="signupForm.get('age')?.errors != null && signupForm.get('age')?.touched" class="alert alert-danger my-2">
+            <p *ngIf="signupForm.get('age')?.errors?.required">Age is required</p>
+            <p *ngIf="signupForm.get('age')?.errors?.min">Age min 16 years</p>
+            <p *ngIf="signupForm.get('age')?.errors?.max">Age max 80 years</p>
+          </div>
+        </div>
+        <div class="col-12">
+          <input formControlName="password" type="password" class="form-control password" id="password" placeholder="Enter Password" />
+          <div *ngIf="signupForm.get('password')?.errors != null && signupForm.get('password')?.touched" class="alert alert-danger my-2">
+            <p *ngIf="signupForm.get('password')?.errors?.required">Password is required</p>
+            <p *ngIf="signupForm.get('password')?.errors?.pattern">Start with uppercase - min 3 char - max 8 char ...</p>
+          </div>
+        </div>
+        <div class="col-12">
+          <button type="submit" class="btn btn-primary w-100" [disabled]="signupForm.invalid">
+            <span *ngIf="!isClicked">Sign up</span>
+            <span *ngIf="isClicked">Waiting....</span>
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</section>

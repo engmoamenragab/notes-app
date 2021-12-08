@@ -1,0 +1,29 @@
+<section id="signin" class="signin">
+  <div class="container">
+    <form [formGroup]="signinForm" (ngSubmit)="submitSigninForm(signinForm)" class="form w-50 m-auto">
+      <div *ngIf="error.length > 0" class="alert alert-danger">
+        <p>{{ error }}</p>
+      </div>
+      <div class="row g-3">
+        <div class="col-12">
+          <input formControlName="email" type="email" class="form-control email" id="email" placeholder="Enter Your Email" />
+          <div *ngIf="signinForm.get('email')?.errors != null && signinForm.get('email')?.touched" class="alert alert-danger my-2">
+            <p *ngIf="signinForm.get('email')?.errors?.required">Email is required</p>
+          </div>
+        </div>
+        <div class="col-12">
+          <input formControlName="password" type="password" class="form-control password" id="password" placeholder="Enter Password" />
+          <div *ngIf="signinForm.get('password')?.errors != null && signinForm.get('password')?.touched" class="alert alert-danger my-2">
+            <p *ngIf="signinForm.get('password')?.errors?.required">Password is required</p>
+          </div>
+        </div>
+        <div class="col-12">
+          <button type="submit" class="btn btn-primary w-100" [disabled]="signinForm.invalid">
+            <span *ngIf="!isClicked">Sign in</span>
+            <span *ngIf="isClicked">Waiting....</span>
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</section>

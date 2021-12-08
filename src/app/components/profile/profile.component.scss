@@ -1,0 +1,14 @@
+.profile {
+  min-height: 100vh;
+  background-color: #212529;
+}
+.note {
+  min-height: 250px;
+  background-color: #fcc;
+}
+.note .dropdown .dropdown-menu li .dropdown-item {
+  cursor: pointer;
+}
+i {
+  cursor: pointer;
+}
